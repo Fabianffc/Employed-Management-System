@@ -49,69 +49,99 @@ function start() {
 }
 
 function addDepartment() {
-inquirer.prompt([{
-    type: "input",
-    message: "Department name?",
-    name: "department"
-}])
-.then(function(data){
-    connection.query("INSERT INTO department(name)VALUES(?)",data.department,function(err,data){
-        if (err){
-            console.log(err);
-        }
-        console.log("Succes!!");
-        start()
-    })
-})
+    inquirer.prompt([{
+        type: "input",
+        message: "Department name?",
+        name: "department"
+    }])
+        .then(function (data) {
+            connection.query("INSERT INTO department(name)VALUES(?)", data.department, function (err, data) {
+                if (err) {
+                    console.log(err);
+                }
+                console.log("Succes!!");
+                start()
+            })
+        })
 }
 function addRoles() {
-inquirer.prompt([{
-    type: "input",
-    message: "New role?",
-    name: "title"
-},{
-    type:"input",
-    message:"What is the new salary?",
-    name:"salary"
-},
-{
-    type: "input",
-    message: "What is the department id?",
-    name : "department_id"
-}])
-.then(function(input){
-var statement=    connection.query("INSERT INTO role(title, salary, department_id) VALUES (?,?,?)",[input.title, parseFloat(input.salary), parseInt(input.department_id)], 
-function(err, data){
-        printTable(data)
-        console.log("Succes!!")
-     //   start()
-    })
-    console.log(statement.sql)
-})
+    inquirer.prompt([{
+        type: "input",
+        message: "New role?",
+        name: "title"
+    }, {
+        type: "input",
+        message: "What is the new salary?",
+        name: "salary"
+    },
+    {
+        type: "input",
+        message: "What is the department id?",
+        name: "department_id"
+    }])
+        .then(function (input) {
+            var statement = connection.query("INSERT INTO role(title, salary, department_id) VALUES (?,?,?)", [input.title, parseFloat(input.salary), parseInt(input.department_id)],
+                function (err, data) {
+                    printTable(data)
+                    console.log("Succes!!")
+                    //   start()
+                })
+            console.log(statement.sql)
+        })
 
 }
 function addEmployees() {
+    inquirer.prompt([{
+        type: "input",
+        message: "New employee name?",
+        name: "name"
+    }, {
+        type: "input",
+        message: "What is the position?",
+        name: "position"
+    },
+    {
+        type: "input",
+        message: "What is the department id?",
+        name: "department_id"
+    }])
+        .then(function (input) {
+            var statement = connection.query("INSERT INTO role(name, position, department_id) VALUES (?,?,?)", [input.name, parseFloat(input.position), parseInt(input.department_id)],
+                function (err, data) {
+                    printTable(data)
+                    console.log("Succes!!")
+
+                })
+            console.log(statement.sql)
+        })
 
 }
 function viewDepartment() {
-connection.query("select * FROM department", function(err,data){
-    printTable(data)
-    start()
-})
+    connection.query("select * FROM department", function (err, data) {
+        printTable(data)
+        start()
+    })
 }
 function viewRoles() {
-    connection.query("select * FROM role", function(err,data){
+    connection.query("select * FROM role", function (err, data) {
         printTable(data)
         start()
     })
 }
 function viewEmployees() {
-    connection.query("select * FROM employee", function(err,data){
+    connection.query("select * FROM employee", function (err, data) {
         printTable(data)
         start()
     })
 
 }
 function updateEmployeesRoles() {
+    connection.query("UPDATE * FROM role SET title = ? WHERE department_id = ?"[title, department_id],
+        function (err, data) {
+            printTable(data)
+            start()
 
-}
+
+
+        })
+    }
