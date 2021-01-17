@@ -136,12 +136,31 @@ function viewEmployees() {
 
 }
 function updateEmployeesRoles() {
-    connection.query("UPDATE * FROM role SET title = ? WHERE department_id = ?"[title, department_id],
+    inquirer.prompt([{
+        type: "input",
+        message: "What is the new employee role?",
+        name:"title"
+
+        
+    },
+    {
+        type: "input",
+        message: "What is your employee id?",
+        name: "id"
+
+    }
+]).then(function(userInput){
+   var statement =     connection.query("UPDATE employee SET role_id = ? WHERE id = ?",[userInput.title, userInput.id],
         function (err, data) {
-            printTable(data)
+          console.log("your role has been updated!!");
+
             start()
 
 
 
         })
+        console.log(statement.sql);
+    })
+    
+   
     }
