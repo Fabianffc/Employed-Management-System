@@ -50,7 +50,7 @@ function start() {
             }
         })
 }
-
+//add an department using an inquirer prompt where we ask for the user inputs(name of department)
 function addDepartment() {
     inquirer.prompt([{
         type: "input",
@@ -67,6 +67,8 @@ function addDepartment() {
             })
         })
 }
+//add a role using an inquirer prompt where we ask for the user inputs(title,salary,department_id)
+
 function addRoles() {
     inquirer.prompt([{
         type: "input",
@@ -93,6 +95,7 @@ function addRoles() {
         })
 
 }
+//add employee using an inquirer prompt where we ask for the user inputs(name,position,department_id)
 function addEmployees() {
     inquirer.prompt([{
         type: "input",
@@ -119,18 +122,23 @@ function addEmployees() {
         })
 
 }
+// view the departments in our terminal using printTable selecting the info from our table "department"
 function viewDepartment() {
     connection.query("select * FROM department", function (err, data) {
         printTable(data)
         start()
     })
 }
+// view the roles in our terminal using printTable selecting the info FROM our table role
+
 function viewRoles() {
     connection.query("select * FROM role", function (err, data) {
         printTable(data)
         start()
     })
 }
+// view employees in our terminal using printTable selecting the info from our table "employee"
+
 function viewEmployees() {
     connection.query("select * FROM employee", function (err, data) {
         printTable(data)
@@ -138,6 +146,7 @@ function viewEmployees() {
     })
 
 }
+//Update employee roles
 function updateEmployeesRoles() {
     inquirer.prompt([{
         type: "input",
