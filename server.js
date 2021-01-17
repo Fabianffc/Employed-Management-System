@@ -1,7 +1,9 @@
 var inquirer = require("inquirer");
+//we are requiring mysql so we can use it
 var mysql = require("mysql");
+//this way we can print our table in the terminal
 const { printTable } = require('console-table-printer');
-
+//making the connection with our mysql workbench db
 var connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
@@ -13,6 +15,7 @@ connection.connect(function (err) {
     console.log("connection id", connection.threadId);
     start()
 })
+//using inquirer.prompt we asked the user to pick an item from the "choices" below
 function start() {
     inquirer.prompt([{
         type: "list",
@@ -159,7 +162,6 @@ function updateEmployeesRoles() {
 
 
         })
-        console.log(statement.sql);
     })
     
    
